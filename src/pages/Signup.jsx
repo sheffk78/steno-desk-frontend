@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { redditTrack } from "@/lib/reddit";
@@ -16,7 +16,10 @@ export default function Signup() {
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchParams] = useSearchParams();
+  const isFounding = searchParams.get("founding") === "1";
   const isBeta = searchParams.get("beta") === "1";
+  // Treat either beta=1 or founding=1 as founding user for trial/benefit purposes.
+  const isFoundingUser = isFounding || isBeta;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -27,10 +30,10 @@ export default function Signup() {
     }
     setLoading(true);
     try {
-      await signup(email, password, name, isBeta);
+      await signup(email, password, name, isFoundingUser);
       // Fire Reddit conversion event (silent if pixel is blocked).
       redditTrack("SignUp", {
-        customEventName: isBeta ? "BetaSignUp" : "TrialSignUp",
+        customEventName: isFoundingUser ? "FoundingUserSignUp" : "TrialSignUp",
       });
       navigate("/app/dashboard", { replace: true });
     } catch (e) {
@@ -49,13 +52,17 @@ export default function Signup() {
       </header>
       <main className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-sm">
-          {isBeta && (
-            <div className="mb-5 bg-violet-50 border border-violet-200 rounded-md px-3 py-2 text-sm text-violet-900" data-testid="signup-beta-banner">
-              <span className="font-semibold">Beta tester — 60 days free.</span> Welcome aboard.
+          {isFoundingUser && (
+            <div className="mb-5 bg-[#FAF3E4] border border-[#D4A056]/40 rounded-md px-3 py-2 text-sm text-[#B45309]" data-testid="signup-founding-banner">
+              <span className="font-semibold">Founding User — 60 days free.</span> Welcome aboard.
             </div>
           )}
           <h1 className="font-serif text-3xl text-slate-900 tracking-tight mb-1">Start your free trial</h1>
-          <p className="text-sm text-stone-600 mb-7">{isBeta ? "60 days. No credit card. Cancel anytime." : "7 days. No credit card. Cancel anytime."}</p>
+          <p className="text-sm text-stone-600 mb-7">
+            {isFoundingUser
+              ? "60 days. No credit card. No required calls."
+              : "30 days. No credit card. Cancel anytime."}
+          </p>
 
           <form onSubmit={onSubmit} className="space-y-4" data-testid="signup-form">
             <div>
@@ -114,6 +121,17 @@ export default function Signup() {
               {loading ? "Creating account…" : "Create account"}
             </Button>
           </form>
+
+          {isFoundingUser && (
+            <div className="mt-5 bg-white border border-stone-200 rounded-md px-4 py-3 text-[13px] text-stone-600 leading-relaxed" data-testid="signup-optional-walkthrough">
+              <p className="font-semibold text-[#1F2937] mb-1">Want a guided setup?</p>
+              <p>
+                After you create your account, you can optionally book a 30-minute
+                walkthrough with Jeff — the person building Steno Desk. No sales
+                pitch, no obligation. Just skip it if you'd rather jump in on your own.
+              </p>
+            </div>
+          )}
 
           <div className="mt-6 text-sm text-stone-600">
             Already have an account?{" "}

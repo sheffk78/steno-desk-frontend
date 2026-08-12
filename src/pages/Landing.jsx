@@ -35,13 +35,31 @@ const painPoints = [
   "At tax time, you spend a weekend hunting through Gmail and paper folders to figure out what you paid your scopist.",
 ];
 
+const howItWorks = [
+  {
+    step: "1",
+    title: "Add the job",
+    body: "Enter the client, date, and job type. Your per-client rates fill in automatically.",
+  },
+  {
+    step: "2",
+    title: "Build the invoice",
+    body: "Every line item you charge is already there — appearance fee, pages, copies, exhibits, scopist deduction. Adjust quantities and you're done.",
+  },
+  {
+    step: "3",
+    title: "Send and track",
+    body: "Email a clean PDF invoice to the ordering attorney from inside the app. Mark it paid when the check arrives. That's it.",
+  },
+];
+
 const faqs = [
   {
     q: "Is this designed for agencies or freelancers?",
     a: "Freelancers only. Every feature is built around the solo reporter's workflow — not agency dispatch, not multi-reporter firms. If you work for yourself, this is for you.",
   },
   {
-    q: "What happens after my 7-day trial?",
+    q: "What happens after my 30-day trial?",
     a: "Nothing automatically. Your account stays open and you can see all your data. We'll ask if you'd like to continue. No credit card is charged without your action.",
   },
   {
@@ -55,6 +73,10 @@ const faqs = [
   {
     q: "What if I've been using Acculaw or RepAgencyWorks?",
     a: "You can run Steno Desk alongside any existing software during your trial. Most reporters get through their first three jobs and don't look back.",
+  },
+  {
+    q: "Do I have to get on a call with someone?",
+    a: "No. The trial is self-serve — create your account and start working. If you'd like a personal walkthrough, you can book a 30-minute setup call with Jeff after you sign up. It's entirely optional.",
   },
 ];
 
@@ -86,7 +108,7 @@ export default function Landing() {
           <nav className="hidden md:flex items-center gap-7 text-[15px] text-[#6B7280]">
             <a href="#features" className="hover:text-[#1F2937]">Features</a>
             <a href="#pricing" className="hover:text-[#1F2937]">Pricing</a>
-            <a href="#beta" className="hover:text-[#1F2937]">Beta</a>
+            <a href="#founding" className="hover:text-[#1F2937]">Founding Users</a>
             <a href="#faq" className="hover:text-[#1F2937]">FAQ</a>
           </nav>
           <div className="flex items-center gap-3">
@@ -107,7 +129,7 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto px-6 pt-20 pb-24 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 sd-fade">
             <div className="text-[13px] tracking-[0.08em] uppercase text-[#6B7280] mb-6 font-medium">
-              Practice management for freelance court reporters
+              Built for freelance court reporters — not agencies
             </div>
             <h1 className="text-[44px] sm:text-[56px] lg:text-[64px] leading-[1.05] font-semibold tracking-[-0.02em] text-[#1F2937]">
               Stop building invoices in&nbsp;Word.
@@ -120,7 +142,7 @@ export default function Landing() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link to="/signup" data-testid="hero-signup">
                 <Button className="bg-[#1F2937] hover:bg-[#111827] text-white h-12 px-6 text-[16px] rounded-md font-semibold">
-                  Start your free 7-day trial
+                  Start your free 30-day trial
                 </Button>
               </Link>
               <span className="text-[15px] text-[#6B7280]">
@@ -150,6 +172,32 @@ export default function Landing() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how-it-works" className="border-b border-[#E5E1DA] bg-[#FBFAF7]">
+        <div className="max-w-4xl mx-auto px-6 py-24">
+          <h2 className="text-[28px] sm:text-[32px] font-semibold tracking-tight text-[#1F2937] mb-3">
+            How it works.
+          </h2>
+          <p className="text-[17px] text-[#6B7280] mb-12 max-w-2xl">
+            Three steps from job booked to invoice sent. No setup wizard, no
+            templates to configure — your first invoice is ready in minutes.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-8">
+            {howItWorks.map((s) => (
+              <div key={s.step} data-testid={`howitworks-step-${s.step}`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="h-8 w-8 rounded-full bg-[#D4A056] text-white text-[14px] font-semibold flex items-center justify-center">
+                    {s.step}
+                  </span>
+                  <h3 className="text-[18px] font-semibold text-[#1F2937]">{s.title}</h3>
+                </div>
+                <p className="text-[15px] text-[#374151] leading-relaxed">{s.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -203,30 +251,32 @@ export default function Landing() {
             />
           </div>
           <p className="text-center text-[14px] text-[#6B7280] mt-8">
-            7-day free trial on both plans. No card required.
+            30-day free trial on both plans. No card required.
           </p>
         </div>
       </section>
 
-      {/* Beta tester offer */}
-      <section id="beta" className="border-b border-[#E5E1DA] bg-[#FAF3E4]/40">
+      {/* Founding User Program */}
+      <section id="founding" className="border-b border-[#E5E1DA] bg-[#FAF3E4]/40">
         <div className="max-w-5xl mx-auto px-6 py-24">
           <div className="text-[13px] tracking-[0.08em] uppercase text-[#B45309] mb-4 font-semibold">
-            Beta — 25 reporters
+            Founding User Program
           </div>
           <h2 className="text-[28px] sm:text-[32px] font-semibold tracking-tight text-[#1F2937] mb-5">
-            Join the beta. Help us get it right.
+            Be among the first to run your practice on Steno Desk.
           </h2>
           <p className="text-[17px] text-[#374151] leading-relaxed mb-10 max-w-3xl">
-            We're looking for 25 freelance reporters to use Steno Desk during the
-            beta period and tell us honestly what's working and what isn't.
+            We're opening Steno Desk to a small founding group of freelance court
+            reporters. You get the full product, a longer free trial, and a
+            direct line to the builder. In return, you tell us what would make it
+            better for the reporter sitting in the deposition chair next to you.
           </p>
 
           {/* Demo video */}
           <div
             className="relative w-full mb-10 bg-black rounded-lg overflow-hidden border border-[#E5E1DA] shadow-sm"
             style={{ paddingTop: "56.25%" }}
-            data-testid="beta-demo-video"
+            data-testid="founding-demo-video"
           >
             <iframe
               src="https://iframe.mediadelivery.net/embed/611388/5a14c957-9a76-4aba-823b-729b72fb2a0f?autoplay=true&loop=true&muted=true&preload=true&responsive=true"
@@ -243,21 +293,23 @@ export default function Landing() {
               <div className="text-[13px] tracking-[0.08em] uppercase text-[#6B7280] font-semibold mb-3">What you get</div>
               <ul className="space-y-2 text-[15px] text-[#374151]">
                 <li>· 60 days completely free — no credit card, no auto-charge</li>
-                <li>· A 30-minute call with the founder to walk through anything that's confusing</li>
-                <li>· Your feedback actually shapes the product (not ignored in a backlog)</li>
+                <li>· Every feature, day one — nothing held back, no "pro" tier to unlock later</li>
+                <li>· A direct line to Jeff, the builder — not a support queue, the person writing the code</li>
+                <li>· Your requests shape the roadmap — you see what's being built and why</li>
               </ul>
             </div>
             <div>
-              <div className="text-[13px] tracking-[0.08em] uppercase text-[#6B7280] font-semibold mb-3">What we ask</div>
+              <div className="text-[13px] tracking-[0.08em] uppercase text-[#6B7280] font-semibold mb-3">Optional, not required</div>
               <ul className="space-y-2 text-[15px] text-[#374151]">
-                <li>· Use it for at least 3 jobs during the 60 days</li>
-                <li>· Spend 30 minutes on a feedback call with Jeff</li>
+                <li>· Try it on a real job whenever you're ready — no deadline, no quota</li>
+                <li>· Book a 30-minute setup walkthrough with Jeff if you'd like a guided tour</li>
+                <li>· Send a note when something feels off — or don't. Up to you.</li>
               </ul>
             </div>
           </div>
-          <Link to="/signup?beta=1" data-testid="beta-cta">
+          <Link to="/signup?founding=1" data-testid="founding-cta">
             <Button className="bg-[#1F2937] hover:bg-[#111827] text-white h-11 px-5 rounded-md font-semibold">
-              Apply for beta access
+              Join the founding program
             </Button>
           </Link>
         </div>
@@ -276,7 +328,9 @@ export default function Landing() {
             the software court reporters deserve doesn't exist yet. I'm building
             it to be exactly what a freelance reporter needs: no bloat, no
             complexity, no agency-centric nonsense. Just a clean tool that
-            handles the admin so you can focus on the work.
+            handles the admin so you can focus on the work. You can reach me
+            directly — no support tiers, no ticket queues. If something's
+            broken, tell me and I'll fix it.
           </p>
         </div>
       </section>
@@ -305,8 +359,8 @@ export default function Landing() {
             Not ready to sign up? Get updates.
           </h2>
           <p className="text-[16px] text-[#6B7280] mt-3 mb-8">
-            We're adding reporters to the beta over the next few weeks. Leave
-            your email and we'll let you know when a spot opens.
+            We're adding founding users over the coming weeks. Leave your email
+            and we'll let you know when a spot opens.
           </p>
           {emailSent ? (
             <div className="bg-[#DCFCE7] border border-[#15803D]/30 text-[#15803D] rounded-md px-4 py-3 text-[15px]">
@@ -375,7 +429,7 @@ function PricingCard({ name, price, cadence, best, featured, testid }) {
         <li>· Court-reporter line items built in</li>
         <li>· PDF generation + send via email</li>
         <li>· Schedule C expense export</li>
-        <li>· 7 days free, no card</li>
+        <li>· 30 days free, no card</li>
       </ul>
       <Link to="/signup">
         <Button
