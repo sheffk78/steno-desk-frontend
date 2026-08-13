@@ -4,5 +4,8 @@ import "@/index.css";
 import App from "@/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
-// env: Mon Jul 27 00:22:52 MDT 2026
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);
