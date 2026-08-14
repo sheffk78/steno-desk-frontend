@@ -59,7 +59,7 @@ const faqs = [
     a: "Freelancers only. Every feature is built around the solo reporter's workflow — not agency dispatch, not multi-reporter firms. If you work for yourself, this is for you.",
   },
   {
-    q: "What happens after my 30-day trial?",
+    q: "What happens after my 7-day trial?",
     a: "Nothing automatically. Your account stays open and you can see all your data. We'll ask if you'd like to continue. No credit card is charged without your action.",
   },
   {
@@ -142,7 +142,7 @@ export default function Landing() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link to="/signup" data-testid="hero-signup">
                 <Button className="bg-[#1F2937] hover:bg-[#111827] text-white h-12 px-6 text-[16px] rounded-md font-semibold">
-                  Start your free 30-day trial
+                  Start your free 7-day trial
                 </Button>
               </Link>
               <span className="text-[15px] text-[#6B7280]">
@@ -251,7 +251,7 @@ export default function Landing() {
             />
           </div>
           <p className="text-center text-[14px] text-[#6B7280] mt-8">
-            30-day free trial on both plans. No card required.
+            7-day free trial on both plans. No card required.
           </p>
         </div>
       </section>
@@ -429,7 +429,7 @@ function PricingCard({ name, price, cadence, best, featured, testid }) {
         <li>· Court-reporter line items built in</li>
         <li>· PDF generation + send via email</li>
         <li>· Schedule C expense export</li>
-        <li>· 30 days free, no card</li>
+        <li>· 7 days free, no card</li>
       </ul>
       <Link to="/signup">
         <Button

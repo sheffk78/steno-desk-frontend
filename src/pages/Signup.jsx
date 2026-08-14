@@ -61,7 +61,7 @@ export default function Signup() {
           <p className="text-sm text-stone-600 mb-7">
             {isFoundingUser
               ? "60 days. No credit card. No required calls."
-              : "30 days. No credit card. Cancel anytime."}
+              : "7 days. No credit card. Cancel anytime."}
           </p>
 
           <form onSubmit={onSubmit} className="space-y-4" data-testid="signup-form">

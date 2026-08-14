@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Briefcase, FileText, Inbox } from "lucide-react";
 
 const fmtMoney = (n) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n || 0);
+  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n || 0);
 const fmtDate = (iso) => {
   if (!iso) return "—";
   const d = new Date(iso);
