@@ -1,9 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Toaster } from "sonner";
 import "@/App.css";
 
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import SkipToContent from "@/components/SkipToContent";
+import CookieBanner from "@/components/CookieBanner";
+import { captureUTM } from "@/lib/utm";
 
 import Landing from "@/pages/Landing";
 import Login from "@/pages/Login";
@@ -31,9 +35,15 @@ import PortalInvoice from "@/pages/PortalInvoice";
 import PortalScopist from "@/pages/PortalScopist";
 
 function App() {
+  useEffect(() => {
+    // Capture UTM params on first load
+    captureUTM();
+  }, []);
+
   return (
     <AuthProvider>
       <BrowserRouter>
+        <SkipToContent />
         <Toaster position="top-right" richColors />
         <Routes>
           {/* Public */}
@@ -204,6 +214,7 @@ function App() {
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <CookieBanner />
       </BrowserRouter>
     </AuthProvider>
   );

@@ -35,10 +35,10 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const signup = async (email, password, name, beta = false) => {
+  const signup = async (email, password, name, beta = false, utm = {}) => {
     setError("");
     try {
-      const { data } = await api.post("/auth/signup", { email, password, name, beta });
+      const { data } = await api.post("/auth/signup", { email, password, name, beta, utm });
       setUser(data.user);
       return data.user;
     } catch (e) {

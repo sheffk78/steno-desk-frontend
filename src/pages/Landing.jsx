@@ -2,9 +2,21 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { api } from "@/lib/api";
 import { redditTrack } from "@/lib/reddit";
+import { getUTM } from "@/lib/utm";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import MobileMenu from "@/components/MobileMenu";
+import ThemeToggle from "@/components/ThemeToggle";
+import SiteSearch from "@/components/SiteSearch";
+import ScrollProgress from "@/components/ScrollProgress";
+import FloatingContact from "@/components/FloatingContact";
 
 const features = [
   {
@@ -88,7 +100,7 @@ export default function Landing() {
     e.preventDefault();
     if (!emailCapture) return;
     try {
-      await api.post("/leads", { email: emailCapture, source: "landing_email_capture" });
+      await api.post("/leads", { email: emailCapture, source: "landing_email_capture", ...getUTM() });
     } catch (_) {
       // Soft-fail — never block the marketing UX on backend errors.
     }
@@ -98,31 +110,39 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBFAF7] text-[#1F2937]">
+    <div className="min-h-screen bg-[#FBFAF7] text-[#1F2937] dark:bg-gray-900 dark:text-gray-100">
+      <ScrollProgress />
       {/* Top nav */}
-      <header className="border-b border-[#E5E1DA] bg-[#FBFAF7]/85 backdrop-blur sticky top-0 z-30">
+      <header className="border-b border-[#E5E1DA] bg-[#FBFAF7]/85 backdrop-blur sticky top-0 z-30 dark:bg-gray-900/85 dark:border-gray-700">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center" data-testid="brand-link">
             <Logo className="h-8" />
           </Link>
-          <nav className="hidden md:flex items-center gap-7 text-[15px] text-[#6B7280]">
-            <a href="#features" className="hover:text-[#1F2937]">Features</a>
-            <a href="#pricing" className="hover:text-[#1F2937]">Pricing</a>
-            <a href="#founding" className="hover:text-[#1F2937]">Founding Users</a>
-            <a href="#faq" className="hover:text-[#1F2937]">FAQ</a>
+          <nav className="hidden md:flex items-center gap-7 text-[15px] text-[#6B7280] dark:text-gray-400">
+            <a href="#features" className="hover:text-[#1F2937] dark:hover:text-gray-100">Features</a>
+            <a href="#pricing" className="hover:text-[#1F2937] dark:hover:text-gray-100">Pricing</a>
+            <a href="#founding" className="hover:text-[#1F2937] dark:hover:text-gray-100">Founding Users</a>
+            <a href="#faq" className="hover:text-[#1F2937] dark:hover:text-gray-100">FAQ</a>
           </nav>
           <div className="flex items-center gap-3">
-            <Link to="/login" className="text-[15px] text-[#1F2937] hover:text-[#111827] px-3 py-1.5" data-testid="nav-login">
+            <div className="hidden md:block">
+              <SiteSearch />
+            </div>
+            <ThemeToggle />
+            <Link to="/login" className="hidden md:inline text-[15px] text-[#1F2937] hover:text-[#111827] dark:text-gray-200 dark:hover:text-white px-3 py-1.5" data-testid="nav-login">
               Sign in
             </Link>
-            <Link to="/signup" data-testid="nav-signup">
+            <Link to="/signup" className="hidden md:inline" data-testid="nav-signup">
               <Button className="bg-[#1F2937] hover:bg-[#111827] text-white text-[15px] h-10 px-4 rounded-md">
                 Start free trial
               </Button>
             </Link>
+            <MobileMenu />
           </div>
         </div>
       </header>
+
+      <main id="main-content">
 
       {/* Hero — generous, single CTA, with animated invoice mockup on the right */}
       <section className="border-b border-[#E5E1DA] bg-[#FBFAF7] sd-grain overflow-hidden">
@@ -336,19 +356,23 @@ export default function Landing() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="border-b border-[#E5E1DA]">
+      <section id="faq" className="border-b border-[#E5E1DA] dark:border-gray-700">
         <div className="max-w-3xl mx-auto px-6 py-24">
-          <h2 className="text-[28px] sm:text-[32px] font-semibold tracking-tight text-[#1F2937] mb-10">
+          <h2 className="text-[28px] sm:text-[32px] font-semibold tracking-tight text-[#1F2937] dark:text-gray-100 mb-10">
             Common questions
           </h2>
-          <div className="space-y-9">
-            {faqs.map((f) => (
-              <div key={f.q}>
-                <div className="text-[17px] font-semibold text-[#1F2937] mb-2">{f.q}</div>
-                <div className="text-[16px] text-[#374151] leading-[1.65]">{f.a}</div>
-              </div>
+          <Accordion type="single" collapsible className="space-y-3" data-testid="faq-accordion">
+            {faqs.map((f, i) => (
+              <AccordionItem key={f.q} value={`item-${i}`} className="border border-[#E5E1DA] dark:border-gray-700 rounded-lg px-5">
+                <AccordionTrigger className="text-[17px] font-semibold text-[#1F2937] dark:text-gray-100 hover:no-underline">
+                  {f.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-[16px] text-[#374151] dark:text-gray-300 leading-[1.65]">
+                  {f.a}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </section>
 
@@ -388,17 +412,23 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className="border-t border-[#E5E1DA] bg-[#FBFAF7]">
+      </main>
+
+      <footer className="border-t border-[#E5E1DA] bg-[#FBFAF7] dark:bg-gray-900 dark:border-gray-700">
         <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <Logo className="h-6" />
-            <span className="text-[13px] text-[#6B7280]">© {new Date().getFullYear()} Steno Desk</span>
+            <span className="text-[13px] text-[#6B7280] dark:text-gray-400">© {new Date().getFullYear()} Steno Desk</span>
           </div>
-          <div className="text-[13px] text-[#6B7280]">
+          <div className="text-[13px] text-[#6B7280] dark:text-gray-400">
             Practice management for freelance court reporters.
+          </div>
+          <div className="text-[12px] text-[#9CA3AF] dark:text-gray-500" data-testid="last-updated">
+            Last updated {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
           </div>
         </div>
       </footer>
+      <FloatingContact />
     </div>
   );
 }
