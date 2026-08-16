@@ -17,6 +17,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import SiteSearch from "@/components/SiteSearch";
 import ScrollProgress from "@/components/ScrollProgress";
 import FloatingContact from "@/components/FloatingContact";
+import BackToTop from "@/components/BackToTop";
 
 const features = [
   {
@@ -429,6 +430,7 @@ export default function Landing() {
         </div>
       </footer>
       <FloatingContact />
+      <BackToTop />
     </div>
   );
 }
