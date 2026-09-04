@@ -50,7 +50,7 @@ export default function ExitIntentFeedback() {
         feature: feature.trim(),
         email: email.trim() || undefined,
         page_url: window.location.href,
-        source: getUTM().source || "exit_intent",
+        source: getUTM().utm_source || "exit_intent",
       });
       setSubmitted(true);
       // Auto-dismiss after showing thank-you state for 3s
