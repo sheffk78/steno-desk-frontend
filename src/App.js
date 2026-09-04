@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import SkipToContent from "@/components/SkipToContent";
 import CookieBanner from "@/components/CookieBanner";
+import ExitIntentFeedback from "@/components/ExitIntentFeedback";
 import { captureUTM } from "@/lib/utm";
 
 import Landing from "@/pages/Landing";
@@ -215,6 +216,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <CookieBanner />
+        <ExitIntentFeedback />
       </BrowserRouter>
     </AuthProvider>
   );

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transcript Page-Count &amp; Fee Estimator | StenoDesk</title>
+<meta name="description" content="Estimate transcript page count from audio minutes or word count, then calculate the total transcription fee. Free tool for freelance court reporters.">
+<link rel="canonical" href="https://stenodesk.co/microtools/page-count-estimator.html">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Transcript Page-Count & Fee Estimator",
+  "url":"https://stenodesk.co/microtools/page-count-estimator.html",
+  "description":"Estimate transcript page count from audio minutes or word count and calculate the total transcription fee.",
+  "applicationCategory":"BusinessApplication",
+  "operatingSystem":"Any",
+  "browserRequirements":"Requires JavaScript",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "publisher":{"@type":"Organization","name":"StenoDesk","url":"https://stenodesk.co"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/svg+xml" href="assets/stenodesk-mark.svg">
+!(function (t, e) {
+                var o, n, p, r;
+                e.__SV ||
+                    ((window.posthog = e),
+                    (e._i = []),
+                    (e.init = function (i, s, a) {
+                        function g(t, e) {
+                            var o = e.split(".");
+                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                                (t[e] = function () {
+                                    t.push(
+                                        [e].concat(
+                                            Array.prototype.slice.call(
+                                                arguments,
+                                                0,
+                                            ),
+                                        ),
+                                    );
+                                });
+                        }
+                        ((p = t.createElement("script")).type =
+                            "text/javascript"),
+                            (p.crossOrigin = "anonymous"),
+                            (p.async = !0),
+                            (p.src =
+                                s.api_host.replace(
+                                    ".i.posthog.com",
+                                    "-assets.i.posthog.com",
+                                ) + "/static/array.js"),
+                            (r =
+                                t.getElementsByTagName(
+                                    "script",
+                                )[0]).parentNode.insertBefore(p, r);
+                        var u = e;
+                        for (
+                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                                u.people = u.people || [],
+                                u.toString = function (t) {
+                                    var e = "posthog";
+                                    return (
+                                        "posthog" !== a && (e += "." + a),
+                                        t || (e += " (stub)"),
+                                        e
+                                    );
+                                },
+                                u.people.toString = function () {
+                                    return u.toString(1) + ".people (stub)";
+                                },
+                                o =
+                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
+                                        " ",
+                                    ),
+                                n = 0;
+                            n < o.length;
+                            n++
+                        )
+                            g(u, o[n]);
+                        e._i.push([i, s, a]);
+                    }),
+                    (e.__SV = 1));
+            })(document, window.posthog || []);
+            posthog.init("phc_ro2pSY5X2aDA9AWMu9TGmRV2bf6CUiSNL7x76o9zmXXi", {
+                api_host: "https://us.i.posthog.com",
+                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well,
+                session_recording: {
+                    recordCrossOriginIframes: true,
+                    capturePerformance: false,
+                },
+            });
+        </script>
+!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_j5hvsdn7sctb",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_j5hvsdn7sctb');rdt('track', 'PageVisit');
+        </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NKES33RM1V"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html"><img src="assets/stenodesk-logo-full.svg" alt="StenoDesk"></a>
+    <span class="pb">Powered by <a href="https://stenodesk.co">StenoDesk</a></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="page-hero">
+    <h1>Transcript Page-Count &amp; Fee Estimator</h1>
+    <p class="sub">Estimate how many transcript pages you'll produce from audio minutes or a word count. Then it calculates the total fee from your per-page rate.</p>
+  </section>
+
+  <div class="tool-card">
+    <div class="form-grid">
+      <div class="field">
+        <label for="mode">Input Type</label>
+        <select id="mode" onchange="toggleMode()">
+          <option value="minutes">Audio Minutes</option>
+          <option value="words">Word Count</option>
+        </select>
+      </div>
+      <div class="field" id="minutesField">
+        <label for="audioMinutes">Audio Minutes</label>
+        <input type="number" id="audioMinutes" value="120" step="1" min="0">
+      </div>
+      <div class="field" id="wordsField" style="display:none">
+        <label for="wordCount">Word Count</label>
+        <input type="number" id="wordCount" value="0" step="1" min="0">
+      </div>
+      <div class="field">
+        <label for="ppm">Pages per Audio Minute</label>
+        <input type="number" id="ppm" value="1.33" step="0.01" min="0">
+        <span class="hint">Industry standard: ~1.33 pages/min (legal transcript)</span>
+      </div>
+      <div class="field">
+        <label for="wpp">Words per Page</label>
+        <input type="number" id="wpp" value="250" step="1" min="1">
+        <span class="hint">Standard legal transcript: 250 words/page</span>
+      </div>
+      <div class="field">
+        <label for="rate2">Page Rate ($)</label>
+        <input type="number" id="rate2" value="4.50" step="0.01" min="0">
+      </div>
+      <div class="field">
+        <label for="appe2">Appearance Fee ($)</label>
+        <input type="number" id="appe2" value="0" step="0.01" min="0">
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="calcPages()">Estimate Pages &amp; Fee</button>
+    </div>
+
+    <div class="results" id="results">
+      <div class="result-card">
+        <h3>Estimate</h3>
+        <ul class="line-items" id="lineItems"></ul>
+        <div class="grand-total">
+          <span>Estimated Total Fee</span>
+          <span class="amt" id="totalFee"></span>
+        </div>
+        <p class="result-summary" id="summary"></p>
+      </div>
+      <div class="cta-banner">
+        <div>
+          <div class="cta-text">Turn this estimate into a job that tracks pages, billing, and delivery — all in one place.</div>
+          <div class="cta-sub">StenoDesk manages your transcript jobs from booking to invoice.</div>
+        </div>
+        <a class="btn" href="https://stenodesk.co/signup?source=page_count_calc&utm_source=reddit&utm_medium=cta&utm_campaign=microtool_page-count">Try StenoDesk Free →</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p style="font-weight:600;margin-bottom:4px">More free tools for court reporters</p>
+    <div class="footer-links">
+      <a href="invoice-calculator.html">Invoice Calculator</a>
+      <a href="mileage-calculator.html">Mileage Calculator</a>
+      <a href="expedite-calculator.html">Expedite Fee Calculator</a>
+      <a href="tax-setaside-calculator.html">Tax Set-Aside Calculator</a>
+      <a href="index.html">All Tools</a>
+    </div>
+    <p class="footer-meta">© 2026 StenoDesk. <a href="https://stenodesk.co">stenodesk.co</a></p>
+    <p class="footer-contact">Feedback? Email <a href="mailto:jeff@socialize.video">jeff@socialize.video</a></p>
+  </div>
+</footer>
+
+<script>
+function num(id){var v=document.getElementById(id).value;return parseFloat(v)||0;}
+function fmt(n){return '$'+n.toFixed(2);}
+function toggleMode(){
+  var m=document.getElementById('mode').value;
+  document.getElementById('minutesField').style.display=m==='minutes'?'flex':'none';
+  document.getElementById('wordsField').style.display=m==='words'?'flex':'none';
+}
+function calcPages(){
+  var mode=document.getElementById('mode').value;
+  var ppm=num('ppm');
+  var wpp=num('wpp');
+  var rate=num('rate2');
+  var appearance=num('appe2');
+  var pages=0,method='';
+
+  if(mode==='minutes'){
+    var mins=num('audioMinutes');
+    pages=Math.round(mins*ppm);
+    method=mins+' audio min × '+ppm+' pages/min';
+  } else {
+    var words=num('wordCount');
+    pages=Math.ceil(words/wpp);
+    method=Math.round(words).toLocaleString()+' words ÷ '+wpp+' words/page';
+  }
+
+  var pageFee=pages*rate;
+  var total=pageFee+appearance;
+
+  var items=[];
+  items.push(['Estimated Page Count',pages+' pages']);
+  items.push(['Calculation',method]);
+  items.push([pages+' Pages × '+fmt(rate),fmt(pageFee)]);
+  if(appearance>0)items.push(['Appearance Fee',fmt(appearance)]);
+
+  var html='';
+  items.forEach(function(i){
+    html+='<li><span class="label">'+i[0]+'</span><span class="amt">'+i[1]+'</span></li>';
+  });
+  document.getElementById('lineItems').innerHTML=html;
+  document.getElementById('totalFee').textContent=fmt(total);
+  document.getElementById('summary').textContent='Page fee: '+fmt(pageFee)+(appearance>0?' + Appearance: '+fmt(appearance):'')+' = '+fmt(total);
+  document.getElementById('results').classList.add('visible');
+}
+</script>
+</body>
+</html>
