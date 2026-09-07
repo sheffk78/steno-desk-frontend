@@ -8,13 +8,13 @@ https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 #    index.html; proxying to /index.html directly triggers CF's automatic
 #    /index.html -> / 308 canonicalization). Per-route rules only — NOT a
 #    blanket /* rewrite — so genuinely unknown paths fall through to 404.html.
-/login /spa.html 200
-/login/ /spa.html 200
-/signup /spa.html 200
-/signup/ /spa.html 200
-/forgot-password /spa.html 200
-/forgot-password/ /spa.html 200
-/reset-password /spa.html 200
-/reset-password/ /spa.html 200
-/app/* /spa.html 200
-/portal/* /spa.html 200
+/login /spa 200
+/login/ /spa 200
+/signup /spa 200
+/signup/ /spa 200
+/forgot-password /spa 200
+/forgot-password/ /spa 200
+/reset-password /spa 200
+/reset-password/ /spa 200
+/app/* /spa 200
+/portal/* /spa 200
