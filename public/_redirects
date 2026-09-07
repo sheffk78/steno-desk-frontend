@@ -1,15 +1,20 @@
 # StenoDesk Cloudflare Pages redirects
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
-# 1. WWW -> apex (canonical domain) â 301 permanent
+# 1. WWW -> apex (canonical domain) — 301 permanent
 https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 
-# 2. SPA fallback: known client routes serve index.html with 200.
-#    Explicit per-route proxying (NOT a blanket /* rewrite) so that
-#    genuinely unknown paths fall through to the top-level 404.html (404).
-/login /index.html 200
-/signup /index.html 200
-/forgot-password /index.html 200
-/reset-password /index.html 200
-/portal/* /index.html 200
-/app/* /index.html 200
+# 2. SPA fallback: known client routes serve the SPA (spa.html = build copy of
+#    index.html; proxying to /index.html directly triggers CF's automatic
+#    /index.html -> / 308 canonicalization). Per-route rules only — NOT a
+#    blanket /* rewrite — so genuinely unknown paths fall through to 404.html.
+/login /spa.html 200
+/login/ /spa.html 200
+/signup /spa.html 200
+/signup/ /spa.html 200
+/forgot-password /spa.html 200
+/forgot-password/ /spa.html 200
+/reset-password /spa.html 200
+/reset-password/ /spa.html 200
+/app/* /spa.html 200
+/portal/* /spa.html 200

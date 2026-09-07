@@ -65,7 +65,8 @@
     "start": "serve -s build -l ${PORT:-3000}",
     "build": "craco build",
     "dev": "craco start",
-    "test": "craco test"
+    "test": "craco test",
+    "postbuild": "cp build/index.html build/spa.html"
   },
   "browserslist": {
     "production": [
