@@ -19,6 +19,6 @@ https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 /app/* /spa 200
 /portal/* /spa 200
 
-# 3. DEBUG: isolate path-rule vs full-URL-rule behavior (remove after test)
-/test-301-xyz / 301
-https://www.stenodesk.co/testwww-abc / 301
+# 3. NOTE: cross-host www->apex redirect lives at the ZONE level (Page Rule
+#    37503f834d7cf5310daa793de118f334) — Pages _redirects cannot match a
+#    different host than the deployment (verified empirically 2026-09-07).
