@@ -18,3 +18,7 @@ https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 /reset-password/ /spa 200
 /app/* /spa 200
 /portal/* /spa 200
+
+# 3. DEBUG: isolate path-rule vs full-URL-rule behavior (remove after test)
+/test-301-xyz / 301
+https://www.stenodesk.co/testwww-abc / 301
