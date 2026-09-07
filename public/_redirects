@@ -1,0 +1,15 @@
+# StenoDesk Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# 1. WWW -> apex (canonical domain) â 301 permanent
+https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
+
+# 2. SPA fallback: known client routes serve index.html with 200.
+#    Explicit per-route proxying (NOT a blanket /* rewrite) so that
+#    genuinely unknown paths fall through to the top-level 404.html (404).
+/login /index.html 200
+/signup /index.html 200
+/forgot-password /index.html 200
+/reset-password /index.html 200
+/portal/* /index.html 200
+/app/* /index.html 200
