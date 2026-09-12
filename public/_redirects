@@ -22,3 +22,11 @@ https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 # 3. NOTE: cross-host www->apex redirect lives at the ZONE level (Page Rule
 #    37503f834d7cf5310daa793de118f334) — Pages _redirects cannot match a
 #    different host than the deployment (verified empirically 2026-09-07).
+
+# 4. Microtools: legacy .html URLs -> extensionless (301 permanent)
+/microtools/index.html /microtools/ 301
+/microtools/invoice-calculator.html /microtools/invoice-calculator 301
+/microtools/page-count-estimator.html /microtools/page-count-estimator 301
+/microtools/mileage-calculator.html /microtools/mileage-calculator 301
+/microtools/expedite-calculator.html /microtools/expedite-calculator 301
+/microtools/tax-setaside-calculator.html /microtools/tax-setaside-calculator 301
