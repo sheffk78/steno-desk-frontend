@@ -63,7 +63,7 @@
   },
   "scripts": {
     "start": "serve -s build -l ${PORT:-3000}",
-    "build": "craco build",
+    "build": "GENERATE_SOURCEMAP=false craco build",
     "dev": "craco start",
     "test": "craco test",
     "postbuild": "cp build/index.html build/spa.html"

@@ -1,26 +1,29 @@
 # StenoDesk Cloudflare Pages redirects
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
-# 1. WWW -> apex (canonical domain) — 301 permanent
+# 1. WWW -> apex (canonical domain) â 301 permanent
 https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 
 # 2. SPA fallback: known client routes serve the SPA (spa.html = build copy of
 #    index.html; proxying to /index.html directly triggers CF's automatic
-#    /index.html -> / 308 canonicalization). Per-route rules only — NOT a
-#    blanket /* rewrite — so genuinely unknown paths fall through to 404.html.
-/login /spa 200
-/login/ /spa 200
-/signup /spa 200
-/signup/ /spa 200
-/forgot-password /spa 200
-/forgot-password/ /spa 200
-/reset-password /spa 200
-/reset-password/ /spa 200
+#    /index.html -> / 308 canonicalization). Each public auth route serves its
+#    OWN crawler-visible shell (signup.html etc.) so crawlers get a unique
+#    title/description/canonical; /app and /portal stay on the SPA. Per-route
+#    rules only â NOT a blanket /* rewrite â so genuinely unknown paths fall
+#    through to 404.html.
+/signup /signup 200
+/signup/ /signup 301
+/login /login 200
+/login/ /login 301
+/forgot-password /forgot-password 200
+/forgot-password/ /forgot-password 301
+/reset-password /reset-password 200
+/reset-password/ /reset-password 301
 /app/* /spa 200
 /portal/* /spa 200
 
 # 3. NOTE: cross-host www->apex redirect lives at the ZONE level (Page Rule
-#    37503f834d7cf5310daa793de118f334) — Pages _redirects cannot match a
+#    37503f8347cf5310daa793de118f334) â Pages _redirects cannot match a
 #    different host than the deployment (verified empirically 2026-09-07).
 
 # 4. Microtools: legacy .html URLs -> extensionless (301 permanent)
