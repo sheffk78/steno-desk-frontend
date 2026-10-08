@@ -288,9 +288,10 @@ export default function Landing() {
           </h2>
           <p className="text-[17px] text-[#374151] leading-relaxed mb-10 max-w-3xl">
             We're opening Steno Desk to a small founding group of freelance court
-            reporters. You get the full product, a longer free trial, and a
-            direct line to the builder. In return, you tell us what would make it
-            better for the reporter sitting in the deposition chair next to you.
+            reporters — ten spots, $149 one-time for lifetime access. You get the
+            full product from day one and a direct line to the builder. In return,
+            you tell us what would make it better for the reporter sitting in the
+            deposition chair next to you.
           </p>
 
           {/* Demo video */}
@@ -313,10 +314,10 @@ export default function Landing() {
             <div>
               <div className="text-[13px] tracking-[0.08em] uppercase text-[#6B7280] font-semibold mb-3">What you get</div>
               <ul className="space-y-2 text-[15px] text-[#374151]">
-                <li>· 60 days completely free — no credit card, no auto-charge</li>
+                <li>· $149 one-time — pay once, never pay again, no increases ever</li>
                 <li>· Every feature, day one — nothing held back, no "pro" tier to unlock later</li>
                 <li>· A direct line to Jeff, the builder — not a support queue, the person writing the code</li>
-                <li>· Your requests shape the roadmap — you see what's being built and why</li>
+                <li>· Your feedback shapes the roadmap — you see what's being built and why</li>
               </ul>
             </div>
             <div>
@@ -330,7 +331,7 @@ export default function Landing() {
           </div>
           <Link to="/signup?founding=1" data-testid="founding-cta">
             <Button className="bg-[#1F2937] hover:bg-[#111827] text-white h-11 px-5 rounded-md font-semibold">
-              Join the founding program
+              Join the founding program — $149 lifetime
             </Button>
           </Link>
         </div>

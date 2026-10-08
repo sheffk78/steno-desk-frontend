@@ -45,7 +45,7 @@ export default function Signup() {
       redditTrack("SignUp", {
         customEventName: isFoundingUser ? "FoundingUserSignUp" : "TrialSignUp",
       });
-      toast.success(isFoundingUser ? "Account created — 60 days free. Welcome aboard." : "Account created — your 7-day trial starts now.");
+      toast.success(isFoundingUser ? "Account created — 60 days free. Your $149 founding rate is locked in." : "Account created — your 7-day trial starts now.");
       navigate("/app/dashboard", { replace: true });
     } catch (e) {
       setErr(e.message);
@@ -66,7 +66,7 @@ export default function Signup() {
         <div className="w-full max-w-sm">
           {isFoundingUser && (
             <div className="mb-5 bg-[#FAF3E4] border border-[#D4A056]/40 rounded-md px-3 py-2 text-sm text-[#B45309]" data-testid="signup-founding-banner">
-              <span className="font-semibold">Founding User — 60 days free.</span> Welcome aboard.
+              <span className="font-semibold">Founding User — 60 days free, $149 lifetime rate locked in.</span> Welcome aboard.
             </div>
           )}
           <h1 className="font-serif text-3xl text-slate-900 dark:text-gray-100 tracking-tight mb-1">Start your free trial</h1>

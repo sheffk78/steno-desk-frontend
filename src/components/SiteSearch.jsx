@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const SEARCHABLE = [
   { label: "Features", href: "#features", text: "Built-in court reporter line items, per-client rate memory, send from inside the app, tax-time CSV export" },
   { label: "Pricing", href: "#pricing", text: "Simple pricing, monthly $39, annual $249, no surprises" },
-  { label: "Founding User Program", href: "#founding", text: "Be among the first, 60 days free, direct line to Jeff" },
+  { label: "Founding User Program", href: "#founding", text: "Be among the first, $149 one-time lifetime access, direct line to Jeff" },
   { label: "FAQ — Agencies or freelancers?", href: "#faq", text: "Freelancers only, not agencies" },
   { label: "FAQ — After trial?", href: "#faq", text: "Nothing automatically, account stays open" },
   { label: "FAQ — Transcript files?", href: "#faq", text: "No, handles business side only, not CAT files" },

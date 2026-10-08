@@ -76,6 +76,16 @@ export default function BillingPanel() {
       api.get("/billing/status").then((r) => r.data).catch(() => null);
     const firePurchase = (s) => {
       if (!s?.is_active) return false;
+      if (s.subscription_type === "founding_lifetime") {
+        redditTrack("Purchase", {
+          value: 149,
+          currency: "USD",
+          itemCount: 1,
+          transactionId: sessionId || s.founding_payment_intent_id || undefined,
+          customEventName: "FoundingLifetimePurchase",
+        });
+        return true;
+      }
       const value = s.subscription_type === "active_annual" ? 249 : 39;
       redditTrack("Purchase", {
         value,
@@ -113,6 +123,26 @@ export default function BillingPanel() {
     try {
       const { data } = await api.post("/billing/checkout", {
         plan,
+        origin: window.location.origin,
+      });
+      if (data?.url) window.location.href = data.url;
+    } catch (e) {
+      toast.error(errMessage(e) || "Could not start checkout.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const onJoinFounding = async () => {
+    setBusy(true);
+    redditTrack("AddToCart", {
+      value: 149,
+      currency: "USD",
+      customEventName: "FoundingCheckoutStarted",
+    });
+    try {
+      const { data } = await api.post("/billing/checkout", {
+        plan: "founding",
         origin: window.location.origin,
       });
       if (data?.url) window.location.href = data.url;
@@ -175,6 +205,24 @@ export default function BillingPanel() {
         </div>
         <p className="text-[15px] text-[#374151]">
           You&apos;ve been comped Steno Desk access. No billing — thanks for helping us shape the product.
+        </p>
+      </div>
+    );
+  }
+
+  // 1b. Founding member (paid $149 lifetime via the Founding User Program)
+  if (status?.state_reason === "founding" || status?.subscription_type === "founding_lifetime") {
+    return (
+      <div className="bg-gradient-to-br from-[#FAF3E4]/70 to-white border border-[#D4A056]/40 rounded-md p-5">
+        <div className="flex items-center gap-2 mb-1">
+          <Sparkles className="h-4 w-4 text-[#B45309]" />
+          <span className="text-[13px] uppercase tracking-[0.06em] font-semibold text-[#B45309]">
+            Founding member
+          </span>
+        </div>
+        <p className="text-[15px] text-[#374151]">
+          You have lifetime access to Steno Desk — one payment, no renewal, ever.
+          Thank you for building this with us.
         </p>
       </div>
     );
@@ -262,6 +310,37 @@ export default function BillingPanel() {
           badge="Save 47%"
           featured
         />
+      </div>
+
+      {/* Founding User Program — $149 one-time, capped at 10 reporters */}
+      <div className="mb-5 p-5 border border-[#D4A056]/40 bg-[#FAF3E4]/40 rounded-lg">
+        <div className="flex items-start justify-between mb-2">
+          <div className="text-[12px] tracking-[0.08em] uppercase text-[#B45309] font-semibold">
+            Founding User Program
+          </div>
+          <span className="text-[11px] uppercase tracking-[0.05em] bg-[#B45309] text-white px-2 py-0.5 rounded font-semibold">
+            10 spots
+          </span>
+        </div>
+        <div className="flex items-baseline gap-1.5 mb-2">
+          <span className="text-[30px] font-semibold tabular text-[#1F2937]">$149</span>
+          <span className="text-[15px] text-[#6B7280]">one-time, lifetime</span>
+        </div>
+        <ul className="text-[13px] text-[#374151] space-y-1 mb-4">
+          <li>· Pay once, never pay again — no monthly, no annual, no increases</li>
+          <li>· Every feature, day one</li>
+          <li>· Direct line to Jeff, the builder</li>
+          <li>· Your feedback shapes the roadmap</li>
+        </ul>
+        <Button
+          onClick={onJoinFounding}
+          disabled={busy}
+          variant="outline"
+          className="border-[#B45309] text-[#B45309] hover:bg-[#B45309] hover:text-white w-full sm:w-auto px-6"
+          data-testid="billing-founding-button"
+        >
+          {busy ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Redirecting…</> : "Join founding program — $149"}
+        </Button>
       </div>
 
       <Button

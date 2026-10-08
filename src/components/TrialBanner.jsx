@@ -35,9 +35,10 @@ export default function TrialBanner() {
   }, []);
 
   if (!status) return null;
-  // No banner for: admins, paying subscribers, or someone with no
-  // trial/beta context at all.
+  // No banner for: admins, founding members (lifetime), paying subscribers,
+  // or someone with no trial/beta context at all.
   if (status.is_admin_lifetime) return null;
+  if (status.state_reason === "founding" || status.subscription_type === "founding_lifetime") return null;
   if (status.subscription_type === "active_monthly") return null;
   if (status.subscription_type === "active_annual") return null;
 
