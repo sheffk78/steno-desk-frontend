@@ -233,15 +233,25 @@
 </footer>
 
 <script>
+// Analytics helper: PostHog's real lib loads async, so retry until capture exists
+function phTrack(event, props, attempt) {
+  attempt = attempt || 0;
+  try {
+    if (window.posthog && typeof posthog.capture === 'function') {
+      posthog.capture(event, props || {});
+    } else if (attempt < 25) {
+      setTimeout(function () { phTrack(event, props, attempt + 1); }, 400);
+    }
+  } catch (err) { /* analytics must never break the page */ }
+}
+
 // Source tagging: founding_page_view with UTM passthrough
 document.addEventListener('DOMContentLoaded', function () {
-  if (window.posthog) {
-    posthog.capture('founding_page_view', {
-      utm_source: new URLSearchParams(location.search).get('utm_source') || null,
-      utm_medium: new URLSearchParams(location.search).get('utm_medium') || null,
-      path: location.pathname,
-    });
-  }
+  phTrack('founding_page_view', {
+    utm_source: new URLSearchParams(location.search).get('utm_source') || null,
+    utm_medium: new URLSearchParams(location.search).get('utm_medium') || null,
+    path: location.pathname,
+  });
 });
 </script>
 <script>
@@ -275,7 +285,7 @@ document.getElementById('fb-form').addEventListener('submit', function (e) {
     .then(function () {
       msg.className = 'msg ok';
       msg.textContent = "Thanks — you got it there. It's in the founder's inbox already.";
-      if (window.posthog) posthog.capture('founding_feedback_submitted', {});
+      phTrack('founding_feedback_submitted', {});
     })
     .catch(function () {
       btn.disabled = false;
@@ -302,7 +312,7 @@ document.getElementById('call-form').addEventListener('submit', function (e) {
     .then(function () {
       msg.className = 'msg ok';
       msg.textContent = 'Request sent. Jeff replies personally, usually within a day.';
-      if (window.posthog) posthog.capture('founding_call_requested', {});
+      phTrack('founding_call_requested', {});
     })
     .catch(function () {
       btn.disabled = false;
