@@ -12,6 +12,8 @@ https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 #    rules only â NOT a blanket /* rewrite â so genuinely unknown paths fall
 #    through to 404.html.
 /signup /signup 200
+/founding /founding 200
+/founding/ /founding 301
 /signup/ /signup 301
 /login /login 200
 /login/ /login 301
