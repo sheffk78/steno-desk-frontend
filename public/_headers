@@ -1,0 +1,7 @@
+# StenoDesk Cloudflare Pages headers
+# Hashed SPA bundles are content-hashed → immutable long cache
+/static/*        Cache-Control: public, max-age=31536000, immutable
+/assets/fonts/*  Cache-Control: public, max-age=31536000, immutable
+/microtools/assets/*  Cache-Control: public, max-age=86400
+/og-card.png     Cache-Control: public, max-age=604800
+/*.html          Cache-Control: public, max-age=0, must-revalidate

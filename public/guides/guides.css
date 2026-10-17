@@ -1,0 +1,13 @@
+/* Guide pages — extends microtools/assets/style.css */
+.gd-article{max-width:760px}
+.gd-byline{font-size:14px;color:var(--muted);margin-top:10px}
+.gd-body{margin-top:24px;font-size:16.5px;line-height:1.65}
+.gd-body h2{font-size:21px;margin:26px 0 10px;padding-top:8px}
+.gd-body p{margin:0 0 14px}
+.gd-body strong{color:var(--text)}
+.gd-body a{text-decoration:underline;text-underline-offset:2px}
+.gd-body ul.gd-list{margin:0 0 16px;padding-left:22px}
+.gd-body ul.gd-list li{margin:6px 0}
+.gd-bio{margin-top:26px;padding:16px 18px;background:var(--bg);border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--muted)}
+.gd-bio strong{color:var(--text)}
+@media(max-width:600px){.gd-body{font-size:16px}}

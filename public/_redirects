@@ -28,6 +28,12 @@ https://www.stenodesk.co/* https://stenodesk.co/:splat 301!
 #    37503f8347cf5310daa793de118f334) â Pages _redirects cannot match a
 #    different host than the deployment (verified empirically 2026-09-07).
 
+# 3b. Guides: legacy .html URLs -> extensionless (301 permanent)
+/guides/index.html /guides/ 301
+/guides/court-reporter-rates.html /guides/court-reporter-rates 301
+/guides/court-reporter-invoice-guide.html /guides/court-reporter-invoice-guide 301
+/guides/court-reporter-tax-organizer.html /guides/court-reporter-tax-organizer 301
+
 # 4. Microtools: legacy .html URLs -> extensionless (301 permanent)
 /microtools/index.html /microtools/ 301
 /microtools/invoice-calculator.html /microtools/invoice-calculator 301
