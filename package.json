@@ -79,5 +79,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "testMatch": [
+      "<rootDir>/src/**/*.test.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-router-dom|@remix-run|@radix-ui)/)"
+    ]
   }
 }
